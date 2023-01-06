@@ -1,0 +1,97 @@
+\usepackage{amsfonts,amsmath,mathrsfs,
+circuitikz,amsthm,mathtools,
+easybmat,hyperref,multicol,
+tikz,color,graphics,
+caption,subcaption,wrapfig,
+fontawesome,soul,pgfplots,mathtools}
+\usepackage[export]{adjustbox}
+\usetikzlibrary{arrows} %Arrows package for drawing
+\pgfplotsset{compat=1.13} %Set to correct warning.
+\usepgfplotslibrary{fillbetween} %Fill Between Package for area question
+
+
+%%% Define Custom Colors %%%
+\definecolor{OliveGreen}{rgb}{0,0.6,0}
+\definecolor{firstDerivative}{rgb}{0,0,0}
+\definecolor{secondDerivative}{rgb}{.6,.6,.6}
+
+%Create blank page
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\newcommand{\semester}{2019 Spring\,}
+\newcommand{\edition}{1$^\text{st}$}
+
+\pagestyle{headandfoot}
+\firstpageheader{\semester MAT 272}{\em Calculus II Labs}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{Page \thepage\ of \numpages}
+\runningfooter{\semester MAT 272}{\em Calculus II Labs}{Page \thepage\ of \numpages}
+\runningfootrule
+                     
+% \newcommand{\pVector}[2]{\left\langle #1,\, #2\right\rangle}
+%\newcommand{\pVectorThree}[3]{\left\langle #1,\, #2,\, #3\right\rangle}
+%\newcommand{\magnitude}[1]{\left\| #1 \right\|}
+%\newcommand{\ddx}[1]{\frac{d}{dx}\left(#1\right)}
+%\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+%\newcommand{\defint}[3]{\displaystyle \int_{#1}^{#2}\left(#3\right)\,dx}
+
+\newcommand{\signChart}[1]{
+%Sign Chart Code
+\begin{figure}[!hbt]
+		\centering
+        %First Sign Chart
+		\begin{subfigure}[]{0.33\textwidth}
+        \centering
+			\begin{tikzpicture}[]
+				\draw[latex-latex,color=firstDerivative,line width=0.6mm] (-1,0)--(5,0); %edit for axis
+				\foreach \x in  {} % edit here for the vertical lines
+     				\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+                \foreach \x in {} % edit here for the numbers
+     				\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] {$\x$};
+                %Insert Signs
+                \node at (5.2,0pt) {${#1}'$};
+            \end{tikzpicture}\\[32pt]
+			\begin{tikzpicture}[]
+				\draw[latex-latex,color=secondDerivative,line width=0.6mm] (-1,0)--(5,0); %edit for axis
+					\foreach \x in  {} % edit here for the vertical lines
+     			\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+                	\foreach \x in {} % edit here for the numbers
+     			\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] {$\x$};
+             %Insert Signs
+             \node at (5.2,0pt) {${#1}''$};
+           	\end{tikzpicture}\\[12pt]
+			\caption*{Sign Charts for ${#1}$}
+		\end{subfigure}
+\end{figure}%
+}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=0.5in,
+ right=0.5in,
+ top=0.75in,
+ bottom=1in
+ }
+
+%%% Custom Anwer Lines %%%
+\newcommand{\numanswerline}[1][{}]{%
+\fillin[#1][0.5in]%
+}
+
+\newcommand{\longanswerline}[1][{}]{%
+\fillin[#1][0.75in]%
+}

@@ -1,0 +1,1 @@
+{"key":"build_command","time":1547050369879,"value":["latexmk","-pdf","-f","-deps","-g","-bibtex","-synctex=1","-interaction=nonstopmode","MAT272_Collected_Labs.tex"]}

@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-synctex=1","-interaction=nonstopmode","section1.3_1.4.tex"],"time":1544835983222}

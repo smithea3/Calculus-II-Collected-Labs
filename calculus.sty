@@ -1,0 +1,143 @@
+\usepackage{amsfonts,amsmath,mathrsfs,
+circuitikz,amsthm,mathtools,
+easybmat,hyperref,multicol,
+tikz,color,graphics,
+caption,subcaption,wrapfig,
+fontawesome,soul,pgfplots,
+mathtools, cancel, enumerate}
+\usepackage[export]{adjustbox}
+\usetikzlibrary{arrows} %Arrows package for drawing
+\pgfplotsset{compat=1.13} %Set to correct warning.
+\usepgfplotslibrary{fillbetween} %Fill Between Package for area question
+
+
+%%% Define Custom Colors %%%
+\definecolor{OliveGreen}{rgb}{0,0.6,0}
+\definecolor{firstDerivative}{rgb}{0,0,0}
+\definecolor{secondDerivative}{rgb}{.6,.6,.6}
+
+%Create blank page
+\usepackage{afterpage}
+
+\newcommand{\sem}{2023 Spring\,}
+\newcommand{\ed}{0.2}
+
+\pagestyle{headandfoot}
+\firstpageheader{\sem MAT 272}{\em Calculus II Labs}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{Page \thepage\ of \numpages}
+\runningfooter{\sem MAT 272}{\em Calculus II Labs}{Page \thepage\ of \numpages}
+\runningfootrule
+
+%%% The following are custom commands from my calculus style documentation %%%
+\newcommand{\myspace}{\mbox{\parbox[c][0.4in]{0.6in}{\hfill}}}
+\newcommand{\myspacetwo}{\mbox{\parbox[c][0.4in]{1.5in}{\hfill}}}
+\newcommand{\varspace}[2]{\mbox{\parbox[c][#1]{#2}{\hfill}}}
+\newcommand{\R}{{\mathrm{R}}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\lrb}[1]{ \left\{#1\right\} }
+\newcommand{\lrp}[1]{\left(#1\right)}
+\newcommand{\pVector}[2]{\left\langle #1,\, #2\right\rangle}
+\newcommand{\pVectorThree}[3]{\left\langle #1,\, #2,\, #3\right\rangle}
+\newcommand{\magnitude}[1]{\left\| #1 \right\|}
+\newcommand{\ddx}[1]{\displaystyle \frac{d}{dx}\left(#1\right)}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\defintp}[3]{\displaystyle \int_{#1}^{#2}\left(#3\right)\,dx}
+\newcommand{\defintnp}[3]{\displaystyle \int_{#1}^{#2} #3 \,dx}
+\newcommand{\defintvarp}[4]{\displaystyle \int_{#1}^{#2}\left(#3\right)\,d{#4}}
+\newcommand{\defintvarnp}[4]{\displaystyle \int_{#1}^{#2} #3 \,d{#4}}
+\newcommand{\indefintp}[1]{\displaystyle \int \left(#1\right)\,dx}
+\newcommand{\indefintnp}[1]{\displaystyle \int #1 \,dx}
+\newcommand{\indefintvarp}[2]{\displaystyle \int \lrp{#1} \,d#2}
+\newcommand{\indefintvarnp}[2]{\displaystyle \int #1 \,d#2}
+\newcommand{\suchthat}{\ni}
+\newcommand{\limit}[3]{\displaystyle \lim_{#1\to #2}\left(#3\right)}
+\newcommand{\limitnp}[3]{\displaystyle \lim_{#1\to #2} #3 }
+\newcommand{\limsump}[1]{\displaystyle \lim_{n\to\infty}\sum_{k=1}^{n}\left( #1 \right)}
+\newcommand{\limsumnp}[1]{\displaystyle \lim_{n\to\infty}\sum_{k=1}^{n} #1}
+\newcommand{\seriesoverkp}[1]{\displaystyle \sum_{k}\left(#1\right)}
+\newcommand{\seriesoverknp}[1]{\displaystyle \sum_{k}#1}
+\newcommand{\serieswithstartpvar}[4]{\displaystyle \sum_{#1=#2}^{#3}\left(#4\right)}
+\newcommand{\serieswithstartnpvar}[4]{ \displaystyle \sum_{#1=#2}^{#3} #4 }
+\newcommand{\serieswithstartpk}[3]{\displaystyle \sum_{k=#1}^{#2}\left(#3\right)}
+\newcommand{\serieswithstartnpk}[3]{\displaystyle \sum_{k=#1}^{#2}#3}
+\newcommand{\finitesump}[3]{\displaystyle \sum_{k=#1}^{#2}\left(#3\right)}
+\newcommand{\finitesumnp}[3]{\displaystyle \sum_{k=#1}^{#2}#3}
+\newcommand{\sequenceoverk}[1]{ \displaystyle \left\{#1\right\}_{k} }
+\newcommand{\sequencewithstartk}[3]{\displaystyle \left\{#3\right\}_{k=#1}^{#2}}
+\newcommand{\sequencewithstartvar}[3]{\displaystyle \left\{#3\right\}_{k=#1}^{#2}}
+\newcommand{\finitegeometricseries}[3]{\frac{#1\left(1-\left(#2\right)^{#3}\right)}{1-#2}}
+\newcommand{\finishthisexample}{\textbf{FINISH THIS EXAMPLE!}}
+\newcommand{\FToC}[3]{\left[#3\right]_{#1}^{#2}}
+\newcommand{\sequence}[3]{$\displaystyle \left\{ #1 \right\}_{#2}^{#3}$}
+
+
+\newcommand{\parametricfunction}[3]{\displaystyle \lrb{ \lrp{ #1,\, #2 } \, |\,\, t\in#3 } }
+\newcommand{\seriesproof}{
+    {\hfill\Large \textsc{Converges / Diverges}}. \\[12pt]
+        Proof\\[-0.35in]
+        \begin{solutionorbox}[3.5in]
+        \end{solutionorbox}
+}
+
+\newcommand{\seriesproofabs}{
+    {\hfill\Large \textsc{Abs. / Cond. / Diverges}}. \\[12pt]
+        Proof\\[-0.35in]
+        \begin{solutionorbox}[3.5in]
+        \end{solutionorbox}
+}
+
+\newcommand{\signChart}[1]{
+%Sign Chart Code
+\begin{figure}[!hbt]
+		\centering
+        %First Sign Chart
+		\begin{subfigure}[]{0.33\textwidth}
+        \centering
+			\begin{tikzpicture}[]
+				\draw[latex-latex,color=firstDerivative,line width=0.6mm] (-1,0)--(5,0); %edit for axis
+				\foreach \x in  {} % edit here for the vertical lines
+     				\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+                \foreach \x in {} % edit here for the numbers
+     				\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] {$\x$};
+                %Insert Signs
+                \node at (5.2,0pt) {${#1}'$};
+            \end{tikzpicture}\\[32pt]
+			\begin{tikzpicture}[]
+				\draw[latex-latex,color=secondDerivative,line width=0.6mm] (-1,0)--(5,0); %edit for axis
+					\foreach \x in  {} % edit here for the vertical lines
+     			\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+                	\foreach \x in {} % edit here for the numbers
+     			\draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] {$\x$};
+             %Insert Signs
+             \node at (5.2,0pt) {${#1}''$};
+           	\end{tikzpicture}\\[12pt]
+			\caption*{Sign Charts for ${#1}$}
+		\end{subfigure}
+\end{figure}%
+}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=0.5in,
+ right=0.5in,
+ top=0.75in,
+ bottom=1in
+ }
+
+%%% Custom Anwer Lines %%%
+\newcommand{\numanswerline}[1][{}]{%
+\fillin[#1][0.5in]%
+}
+
+\newcommand{\longanswerline}[1][{}]{%
+\fillin[#1][0.75in]%
+}
